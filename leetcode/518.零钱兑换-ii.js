@@ -10,24 +10,23 @@
  * @param {number[]} coins
  * @return {number}
  */
-var dfs = function (path, coins, curAmount, amount, res) {
-    if (curAmount > amount) return;
-    if (curAmount === amount) {
-        res.push([...path])
-        return
-    }
-    for (var i = 0; i < coins.length; i++) {
-        if (coins[i] < path[path.length - 1]) continue
-        path.push(coins[i])
-        dfs(path, coins, curAmount + coins[i], amount, res)
-        path.pop()
-    }
-}
 var change = function (amount, coins) {
-    coins = coins.sort((a, b) => a - b)
-    var res = []
-    var memo = {}
-    dfs([], coins, 0, amount, res, memo)
-    return res.length
-};
+    var n = coins.length
+    var dp = Array.from({
+        length: n + 1
+    }, () => new Array(amount + 1).fill(0))
+    for (var i = 0; i <= n; i++) {
+        dp[i][0] = 1
+    }
+    for (var i = 1; i <= n; i++) {
+        for (var j = 1; j <= amount; j++) {
+            if (j - coins[i - 1] >= 0) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i-1]]
+            } else {
+                dp[i][j] = dp[i - 1][j]
+            }
+        }
+    }
+    return dp[n][amount]
+}
 // @lc code=end
