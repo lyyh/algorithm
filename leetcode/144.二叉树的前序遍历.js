@@ -30,7 +30,7 @@
 // };
 
 var preorderTraversal = function (root) {
-    if (!root) return root
+    if (!root) return []
     var p = null
     var result = []
     var stack = [];
@@ -38,7 +38,6 @@ var preorderTraversal = function (root) {
     while (stack.length) {
         var p = stack.pop();
         result.push(p.val)
-        console.log('result',result)
         if (p.right) {
             stack.push(p.right)
         }

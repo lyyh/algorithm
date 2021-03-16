@@ -17,19 +17,20 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var inorderTraversal = function (root) {
+var inorderTraversal = function(root){
+    if(!root)return []
     var result = []
     var stack = []
-    var p = root;
-    while (p || stack.length) {
-        while (p) {
+    var p = root
+    while(p || stack.length){
+        while(p){
             stack.push(p)
             p = p.left
         }
-        var node = stack.pop();
-        result.push(node.val)
-        p = node.right
+        var p = stack.pop()
+        result.push(p.val)
+        p = p.right
     }
     return result
-};
+}
 // @lc code=end
