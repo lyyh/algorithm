@@ -22,10 +22,8 @@ var lowestCommonAncestor = function(root, p, q) {
     if(!root || root.val === p.val || root.val === q.val)return root;
     var left = lowestCommonAncestor(root.left,p,q)
     var right = lowestCommonAncestor(root.right,p,q)
-    if(!left && !right)return null
-    if(!left)return right
-    if(!right)return left
-    return root
+    if(left && right)return root
+    return left || right
 };
 // @lc code=end
 
