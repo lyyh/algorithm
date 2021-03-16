@@ -18,19 +18,19 @@
  * @return {number}
  */
 var minDepth = function (root) {
-    if (!root) return 0
+    if(!root)return 0
     var step = 1
     var queue = [root]
     while (queue.length) {
         var size = queue.length
-        for (var i = 0; i < size; i++) {
-            var node = queue.shift();
-            if (!node.left || !node.right) return step
+        for(var i = 0;i < size;i++){
+            var node = queue.shift()
+            if(!node.left || !node.right)return step
             node.left && queue.push(node.left)
             node.right && queue.push(node.right)
         }
         step++
     }
     return step
-};
+}
 // @lc code=end
