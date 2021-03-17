@@ -9,16 +9,22 @@
  * @param {number} k
  * @return {number}
  */
+var swap = function (num,left,right) {
+    var tmp = num[left]
+    num[left] = num[right]
+    num[right] = tmp
+}
 var partition = function(num,left,right){
     var pivot = num[left];
     var j = left
-    for(var i = left + 1;i <= right;i++){
+    for(var i = left+1;i <= right;i++){
         if(num[i] < pivot){
             j++
-            [num[j],num[i]] = [num[i],num[j]]
+            swap(num,j,i)
         }
+        console.log(num)
     }
-    [num[j],num[left]] = [num[left],num[j]]
+    swap(num,j,left)
     return j
 }
 var findKthLargest = function(nums, k) {
